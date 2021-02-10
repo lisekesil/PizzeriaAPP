@@ -24,5 +24,21 @@ namespace PizzeriaAPP
         {
             InitializeComponent();
         }
+
+        private void ShowIngredients()
+        {
+            var context = new PizzeriaAPPEntities();
+
+            lbtest.ItemsSource = context.Ingredients.Select(i => i.IngredientName).ToList();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var context = new PizzeriaAPPEntities();
+            context.Ingredients.Add(new Ingredient { IngredientName = "Salami" });
+            context.SaveChanges();
+
+            ShowIngredients();
+        }
     }
 }

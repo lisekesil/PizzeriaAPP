@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PizzeriaAPPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ingredients">
+          <Key>
+            <PropertyRef Name="IngredientId" />
+          </Key>
+          <Property Name="IngredientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IngredientName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IngredientsPizzas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="IngredientId" Type="int" Nullable="false" />
+          <Property Name="PizzaId" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderedPizzas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="PizzaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Street" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pizzas">
+          <Key>
+            <PropertyRef Name="PizzaId" />
+          </Key>
+          <Property Name="PizzaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PizzaName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PizzaPrice" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <Association Name="IngredientsFK">
+          <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IngredientsPizzas" Type="Self.IngredientsPizzas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingredients">
+              <PropertyRef Name="IngredientId" />
+            </Principal>
+            <Dependent Role="IngredientsPizzas">
+              <PropertyRef Name="IngredientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OPizzasFK">
+          <End Role="Pizzas" Type="Self.Pizzas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderedPizzas" Type="Self.OrderedPizzas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pizzas">
+              <PropertyRef Name="PizzaId" />
+            </Principal>
+            <Dependent Role="OrderedPizzas">
+              <PropertyRef Name="PizzaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrdersFK">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderedPizzas" Type="Self.OrderedPizzas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderedPizzas">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PizzasFK">
+          <End Role="Pizzas" Type="Self.Pizzas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IngredientsPizzas" Type="Self.IngredientsPizzas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pizzas">
+              <PropertyRef Name="PizzaId" />
+            </Principal>
+            <Dependent Role="IngredientsPizzas">
+              <PropertyRef Name="PizzaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PizzeriaAPPModelStoreContainer">
+          <EntitySet Name="Ingredients" EntityType="Self.Ingredients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IngredientsPizzas" EntityType="Self.IngredientsPizzas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderedPizzas" EntityType="Self.OrderedPizzas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pizzas" EntityType="Self.Pizzas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="IngredientsFK" Association="Self.IngredientsFK">
+            <End Role="Ingredients" EntitySet="Ingredients" />
+            <End Role="IngredientsPizzas" EntitySet="IngredientsPizzas" />
+          </AssociationSet>
+          <AssociationSet Name="OPizzasFK" Association="Self.OPizzasFK">
+            <End Role="Pizzas" EntitySet="Pizzas" />
+            <End Role="OrderedPizzas" EntitySet="OrderedPizzas" />
+          </AssociationSet>
+          <AssociationSet Name="OrdersFK" Association="Self.OrdersFK">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderedPizzas" EntitySet="OrderedPizzas" />
+          </AssociationSet>
+          <AssociationSet Name="PizzasFK" Association="Self.PizzasFK">
+            <End Role="Pizzas" EntitySet="Pizzas" />
+            <End Role="IngredientsPizzas" EntitySet="IngredientsPizzas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PizzeriaAPPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ingredient">
+          <Key>
+            <PropertyRef Name="IngredientId" />
+          </Key>
+          <Property Name="IngredientId" Type="Int32" Nullable="false" />
+          <Property Name="IngredientName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="IngredientsPizzas" Relationship="Self.IngredientsFK" FromRole="Ingredients" ToRole="IngredientsPizzas" />
+        </EntityType>
+        <EntityType Name="IngredientsPizza">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="IngredientId" Type="Int32" Nullable="false" />
+          <Property Name="PizzaId" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ingredient" Relationship="Self.IngredientsFK" FromRole="IngredientsPizzas" ToRole="Ingredients" />
+          <NavigationProperty Name="Pizza" Relationship="Self.PizzasFK" FromRole="IngredientsPizzas" ToRole="Pizzas" />
+        </EntityType>
+        <EntityType Name="Pizza">
+          <Key>
+            <PropertyRef Name="PizzaId" />
+          </Key>
+          <Property Name="PizzaId" Type="Int32" Nullable="false" />
+          <Property Name="PizzaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PizzaPrice" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <NavigationProperty Name="IngredientsPizzas" Relationship="Self.PizzasFK" FromRole="Pizzas" ToRole="IngredientsPizzas" />
+          <NavigationProperty Name="OrderedPizzas" Relationship="PizzeriaAPPModel.OPizzasFK" FromRole="Pizza" ToRole="OrderedPizza" />
+        </EntityType>
+        <Association Name="IngredientsFK">
+          <End Role="Ingredients" Type="Self.Ingredient" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IngredientsPizzas" Type="Self.IngredientsPizza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingredients">
+              <PropertyRef Name="IngredientId" />
+            </Principal>
+            <Dependent Role="IngredientsPizzas">
+              <PropertyRef Name="IngredientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PizzasFK">
+          <End Role="Pizzas" Type="Self.Pizza" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IngredientsPizzas" Type="Self.IngredientsPizza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pizzas">
+              <PropertyRef Name="PizzaId" />
+            </Principal>
+            <Dependent Role="IngredientsPizzas">
+              <PropertyRef Name="PizzaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PizzeriaAPPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ingredients" EntityType="Self.Ingredient" />
+          <EntitySet Name="IngredientsPizzas" EntityType="Self.IngredientsPizza" />
+          <EntitySet Name="Pizzas" EntityType="Self.Pizza" />
+          <AssociationSet Name="IngredientsFK" Association="Self.IngredientsFK">
+            <End Role="Ingredients" EntitySet="Ingredients" />
+            <End Role="IngredientsPizzas" EntitySet="IngredientsPizzas" />
+          </AssociationSet>
+          <AssociationSet Name="PizzasFK" Association="Self.PizzasFK">
+            <End Role="Pizzas" EntitySet="Pizzas" />
+            <End Role="IngredientsPizzas" EntitySet="IngredientsPizzas" />
+          </AssociationSet>
+          <EntitySet Name="OrderedPizzas" EntityType="PizzeriaAPPModel.OrderedPizza" />
+          <EntitySet Name="Orders" EntityType="PizzeriaAPPModel.Order" />
+          <AssociationSet Name="OPizzasFK" Association="PizzeriaAPPModel.OPizzasFK">
+            <End Role="Pizza" EntitySet="Pizzas" />
+            <End Role="OrderedPizza" EntitySet="OrderedPizzas" />
+          </AssociationSet>
+          <AssociationSet Name="OrdersFK" Association="PizzeriaAPPModel.OrdersFK">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderedPizza" EntitySet="OrderedPizzas" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="OrderedPizza">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="PizzaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pizza" Relationship="PizzeriaAPPModel.OPizzasFK" FromRole="OrderedPizza" ToRole="Pizza" />
+          <NavigationProperty Name="Order" Relationship="PizzeriaAPPModel.OrdersFK" FromRole="OrderedPizza" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Street" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <NavigationProperty Name="OrderedPizzas" Relationship="PizzeriaAPPModel.OrdersFK" FromRole="Order" ToRole="OrderedPizza" />
+        </EntityType>
+        <Association Name="OPizzasFK">
+          <End Type="PizzeriaAPPModel.Pizza" Role="Pizza" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="PizzeriaAPPModel.OrderedPizza" Role="OrderedPizza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pizza">
+              <PropertyRef Name="PizzaId" />
+            </Principal>
+            <Dependent Role="OrderedPizza">
+              <PropertyRef Name="PizzaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrdersFK">
+          <End Type="PizzeriaAPPModel.Order" Role="Order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="PizzeriaAPPModel.OrderedPizza" Role="OrderedPizza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderedPizza">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PizzeriaAPPModelStoreContainer" CdmEntityContainer="PizzeriaAPPEntities">
+          <EntitySetMapping Name="Ingredients">
+            <EntityTypeMapping TypeName="PizzeriaAPPModel.Ingredient">
+              <MappingFragment StoreEntitySet="Ingredients">
+                <ScalarProperty Name="IngredientId" ColumnName="IngredientId" />
+                <ScalarProperty Name="IngredientName" ColumnName="IngredientName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IngredientsPizzas">
+            <EntityTypeMapping TypeName="PizzeriaAPPModel.IngredientsPizza">
+              <MappingFragment StoreEntitySet="IngredientsPizzas">
+                <ScalarProperty Name="IngredientId" ColumnName="IngredientId" />
+                <ScalarProperty Name="PizzaId" ColumnName="PizzaId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pizzas">
+            <EntityTypeMapping TypeName="PizzeriaAPPModel.Pizza">
+              <MappingFragment StoreEntitySet="Pizzas">
+                <ScalarProperty Name="PizzaId" ColumnName="PizzaId" />
+                <ScalarProperty Name="PizzaName" ColumnName="PizzaName" />
+                <ScalarProperty Name="PizzaPrice" ColumnName="PizzaPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderedPizzas">
+            <EntityTypeMapping TypeName="PizzeriaAPPModel.OrderedPizza">
+              <MappingFragment StoreEntitySet="OrderedPizzas">
+                <ScalarProperty Name="PizzaId" ColumnName="PizzaId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="PizzeriaAPPModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

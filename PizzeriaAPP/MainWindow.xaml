@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <ListBox Name="lbtest" HorizontalAlignment="Left" Height="233" Margin="55,89,0,0" VerticalAlignment="Top" Width="135"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="285,121,0,0" VerticalAlignment="Top" Width="389" Height="178" Click="Button_Click"/>
+
     </Grid>
 </Window>

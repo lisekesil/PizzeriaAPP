@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ad2a6cf3d32d43ba940af9442bf7a160" Name="Diagram1">
+        <EntityTypeShape EntityType="PizzeriaAPPModel.Ingredient" Width="1.5" PointX="0.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzeriaAPPModel.IngredientsPizza" Width="1.5" PointX="4.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzeriaAPPModel.Pizza" Width="1.5" PointX="1.875" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="PizzeriaAPPModel.IngredientsFK" ManuallyRouted="false" />
+        <AssociationConnector Association="PizzeriaAPPModel.PizzasFK" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PizzeriaAPPModel.OrderedPizza" Width="1.5" PointX="6.625" PointY="3.25" />
+        <EntityTypeShape EntityType="PizzeriaAPPModel.Order" Width="1.5" PointX="10" PointY="1.25" />
+        <AssociationConnector Association="PizzeriaAPPModel.OPizzasFK" />
+        <AssociationConnector Association="PizzeriaAPPModel.OrdersFK" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
