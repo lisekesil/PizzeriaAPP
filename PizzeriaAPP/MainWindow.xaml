@@ -7,8 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ListBox Name="lbtest" HorizontalAlignment="Left" Height="233" Margin="55,89,0,0" VerticalAlignment="Top" Width="135"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="285,121,0,0" VerticalAlignment="Top" Width="389" Height="178" Click="Button_Click"/>
+        <ListBox x:Name="listPizzaIngredients" HorizontalAlignment="Left" Height="185" Margin="379,52,0,0" VerticalAlignment="Top" Width="104"/>
+        <DataGrid  Name="dgvPizzas" SelectionChanged="dgvPizzas_SelectionChanged" SelectionUnit="FullRow" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="185" Margin="36,52,0,0" VerticalAlignment="Top" Width="320">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="PizzaId" Header="Id" Width="30" CanUserResize="False" Visibility="Visible" Binding="{Binding Path=PizzaId}"/>
+                <DataGridTextColumn x:Name="PizzaName" Header="Pizza" Width="*" CanUserResize="False" CanUserReorder="False" Binding="{Binding Path=PizzaName}" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="PizzaPrice" Header="Cena" Width="50" MinWidth="20" CanUserResize="False" CanUserReorder="False" Binding="{Binding Path=PizzaPrice}" IsReadOnly="True"/>
+           
+            </DataGrid.Columns>
+        </DataGrid>
+        <ListBox x:Name="listAllIngredients" HorizontalAlignment="Left" Height="266" Margin="599,52,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

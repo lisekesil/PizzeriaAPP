@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,22 +24,56 @@ namespace PizzeriaAPP
         public MainWindow()
         {
             InitializeComponent();
+            GetData();
         }
 
-        private void ShowIngredients()
+        private void GetData()
         {
             var context = new PizzeriaAPPEntities();
 
-            lbtest.ItemsSource = context.Ingredients.Select(i => i.IngredientName).ToList();
+            var pizzas = context.Pizzas.ToList();
+            var allIngredients = context.Ingredients.Select(i => i.IngredientName).ToList();
+
+            if (pizzas != null && pizzas.Count() > 0)
+            {
+                dgvPizzas.ItemsSource = pizzas;
+                dgvPizzas.SelectedValuePath = "PizzaId";
+            } else
+            {
+                dgvPizzas.ItemsSource = null;
+            }
+
+            if (allIngredients != null && allIngredients.Count() > 0)
+            {
+                listAllIngredients.ItemsSource = allIngredients;
+            }
+            else
+            {
+                listAllIngredients.ItemsSource = null;
+            }
+
+
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ShowPizzaIngredients()
         {
             var context = new PizzeriaAPPEntities();
-            context.Ingredients.Add(new Ingredient { IngredientName = "Salami" });
-            context.SaveChanges();
+            var pizzaId = Int32.Parse(dgvPizzas.SelectedValue.ToString());
 
-            ShowIngredients();
+            var query = (from i in context.Ingredients
+                          join ip in context.IngredientsPizzas
+                          on i.IngredientId equals ip.IngredientId
+                          where ip.PizzaId == pizzaId
+                          select i.IngredientName).ToList();
+
+            listPizzaIngredients.ItemsSource = query;
+
         }
+
+        private void dgvPizzas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+              ShowPizzaIngredients();
+        }
+
     }
 }
