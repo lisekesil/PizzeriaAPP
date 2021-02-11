@@ -30,5 +30,11 @@ namespace PizzeriaAPP.Views
             var manage = new Manage();
             NavigationService.Navigate(manage);
         }
+
+        private void GoListOfPizza(object sender, RoutedEventArgs e)
+        {
+            var listOfPizzas = new ListOfPizzas();
+            NavigationService.Navigate(listOfPizzas);
+        }
     }
 }

@@ -11,7 +11,8 @@
     <Grid>
         <Rectangle Width="800" Height="600" Fill="Bisque"/>
         <Label Content="Zarządzanie" FontSize="30" HorizontalAlignment="Left" Margin="315,24,0,0" VerticalAlignment="Top"/>
-        <Image Source="/Images/pizza.png" HorizontalAlignment="Left" Height="340" Margin="434,159,0,0" VerticalAlignment="Top" Width="316"/>
-        <Button Content="Zarządzaj Pizzami" HorizontalAlignment="Left" Margin="109,204,0,0" VerticalAlignment="Top" Width="207" Height="33" Click="GoManagePizzas"/>
+        <Image Source="/Images/pizza.png" HorizontalAlignment="Left" Height="307" Margin="465,159,0,0" VerticalAlignment="Top" Width="285"/>
+        <Button Content="Zarządzaj Pizzami" HorizontalAlignment="Left" Margin="109,200,0,0" VerticalAlignment="Top" Width="207" Height="33" Click="GoManagePizzas"/>
+        <Button Content="Zarządzaj Składnikami" HorizontalAlignment="Left" Margin="109,250,0,0" VerticalAlignment="Top" Width="207" Height="33" Click="GoManageIngredients"/>
     </Grid>
 </Page>

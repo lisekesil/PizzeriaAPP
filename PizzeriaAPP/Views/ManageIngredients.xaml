@@ -10,5 +10,17 @@
 
     <Grid>
         <Rectangle Width="800" Height="600" Fill="Bisque"/>
+        <Label Content="Edytuj składniki" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="292,34,274,0" VerticalAlignment="Top"/>
+        <Label Content="Lista składników" HorizontalAlignment="Left" Margin="93,131,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="listAllIngredients" HorizontalAlignment="Left" Height="312" Margin="68,162,0,0" VerticalAlignment="Top" Width="141"/>
+        <TextBox x:Name="txtAddIng" HorizontalAlignment="Left" Height="36" Margin="238,195,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="137"/>
+        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="239,236,0,0" VerticalAlignment="Top" Width="136" Height="32" Click="AddIngredient"/>
+        <Label Content="Dodaj nowy składnik" HorizontalAlignment="Left" Margin="239,169,0,0" VerticalAlignment="Top"/>
+
+        <TextBox  HorizontalAlignment="Left" Height="36" Margin="239,401,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="137"/>
+        <Button Content="Edytuj" HorizontalAlignment="Left" Margin="240,442,0,0" VerticalAlignment="Top" Width="136" Height="32"/>
+
+        <Image Source="/Images/pizza.png" HorizontalAlignment="Left" Height="307" Margin="465,159,0,0" VerticalAlignment="Top" Width="285"/>
+        <Label Content="Wybierz składnik&#xD;&#xA;z listy aby edytować" HorizontalAlignment="Left" Margin="239,359,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>

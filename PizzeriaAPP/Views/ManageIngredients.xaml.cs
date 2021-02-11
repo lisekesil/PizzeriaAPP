@@ -23,6 +23,40 @@ namespace PizzeriaAPP.Views
         public ManageIngredients()
         {
             InitializeComponent();
+            GetData();
+
+        }
+
+        private void GetData()
+        {
+
+            var context = new PizzeriaAPPEntities();
+
+            var allIngredients = context.Ingredients.Select(i => i.IngredientName).ToList();
+
+            if (allIngredients != null && allIngredients.Count() > 0)
+            {
+                listAllIngredients.ItemsSource = allIngredients;
+            }
+            else
+            {
+                listAllIngredients.ItemsSource = null;
+            }
+        }
+
+        private void AddIngredient(object sender, RoutedEventArgs e)
+        {
+            var context = new PizzeriaAPPEntities();
+
+            if (txtAddIng.Text != "" || txtAddIng.Text.Length < 50)
+            {
+                context.Ingredients.Add(new Ingredient { IngredientName = txtAddIng.Text });
+                context.SaveChanges();
+                GetData();
+            }else
+            {
+                MessageBox.Show("Spróbuj jeszcze raz! Nazwa skladnika nie może być dłuższa niż 50");
+            }
         }
     }
 }

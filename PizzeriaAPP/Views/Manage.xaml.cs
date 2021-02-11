@@ -25,10 +25,18 @@ namespace PizzeriaAPP.Views
             InitializeComponent();
         }
 
+
+
         private void GoManagePizzas(object sender, RoutedEventArgs e)
         {
             var managePizzas = new ManagePizzas();
             NavigationService.Navigate(managePizzas);
+        }
+
+        private void GoManageIngredients(object sender, RoutedEventArgs e)
+        {
+            var manageIngredients = new ManageIngredients();
+            NavigationService.Navigate(manageIngredients);
         }
     }
 }
