@@ -14,20 +14,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PizzeriaAPP
+namespace PizzeriaAPP.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ManagePizzas.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class ManagePizzas : Page
     {
-        public MainWindow()
+        public ManagePizzas()
         {
             InitializeComponent();
-            //GetData();
+            GetData();
         }
 
-/*        private void GetData()
+        private void GetData()
         {
             var context = new PizzeriaAPPEntities();
 
@@ -38,7 +38,8 @@ namespace PizzeriaAPP
             {
                 dgvPizzas.ItemsSource = pizzas;
                 dgvPizzas.SelectedValuePath = "PizzaId";
-            } else
+            }
+            else
             {
                 dgvPizzas.ItemsSource = null;
             }
@@ -74,16 +75,16 @@ namespace PizzeriaAPP
         {
             var context = new PizzeriaAPPEntities();
 
-     
-            if(dgvPizzas.SelectedValue != null)
+
+            if (dgvPizzas.SelectedValue != null)
             {
                 var pizzaId = Int32.Parse(dgvPizzas.SelectedValue.ToString());
-            
+
                 var pizzaIngredients = (from i in context.Ingredients
-                                          join ip in context.IngredientsPizzas
-                                          on i.IngredientId equals ip.IngredientId
-                                          where ip.PizzaId == pizzaId
-                                          select i.IngredientName).ToList();
+                                        join ip in context.IngredientsPizzas
+                                        on i.IngredientId equals ip.IngredientId
+                                        where ip.PizzaId == pizzaId
+                                        select i.IngredientName).ToList();
 
                 listPizzaIngredients.ItemsSource = pizzaIngredients;
             }
@@ -92,17 +93,28 @@ namespace PizzeriaAPP
 
         private void dgvPizzas_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-              ShowPizzaIngredients();
+            //Create object for DataGrid
+            DataGrid grd = (DataGrid)sender;
+            //Create object for DataRowView
+            DataRowView row_selected = grd.SelectedItem as DataRowView;
+
+            if (dgvPizzas.SelectedCells[0].Column.DisplayIndex == 0)
+            {
+                //MessageBox.Show("ss");
+               tbPizzaName.Text = row_selected["PizzaName"].ToString();
+            }
+            ShowPizzaIngredients();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var context = new PizzeriaAPPEntities();
 
-            if(tbPizzaName.Text == "" || tbPizzaName.Text == "Nazwa Pizzy")
+            if (tbPizzaName.Text == "" || tbPizzaName.Text == "Nazwa Pizzy")
             {
                 MessageBox.Show("Proszę wpisać nazwę pizzy");
-            }else if (Convert.ToDecimal(tbPizzaPrice.Text) <= 0 || tbPizzaPrice.Text == "Cena Pizzy")
+            }
+            else if (Convert.ToDecimal(tbPizzaPrice.Text) <= 0 || tbPizzaPrice.Text == "Cena Pizzy")
             {
                 MessageBox.Show("Proszę wpisać poprawną kwotę");
             }
@@ -116,6 +128,11 @@ namespace PizzeriaAPP
                 context.SaveChanges();
                 ShowPizzas();
             }
-        }*/
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
