@@ -40,6 +40,10 @@ namespace PizzeriaAPP.Views
             {
                 dgvPizzas.ItemsSource = pizzas;
                 dgvPizzas.SelectedValuePath = "PizzaId";
+
+                cmbPizzas.ItemsSource = pizzas;
+                cmbPizzas.DisplayMemberPath = "PizzaName";
+                cmbPizzas.SelectedValuePath = "PizzaId";
             }
             else
             {
@@ -68,6 +72,10 @@ namespace PizzeriaAPP.Views
             {
                 dgvPizzas.ItemsSource = pizzas;
                 dgvPizzas.SelectedValuePath = "PizzaId";
+
+                cmbPizzas.ItemsSource = pizzas;
+                cmbPizzas.DisplayMemberPath = "PizzaName";
+                cmbPizzas.SelectedValuePath = "PizzaId";
             }
             else
             {
@@ -162,5 +170,57 @@ namespace PizzeriaAPP.Views
                 MessageBox.Show("Wybierz składnik który chcesz usunąć z pizzy");
             }
         }
+
+        private void DeletePizza(object sender, RoutedEventArgs e)
+        {
+            if(cmbPizzas.SelectedValue != null)
+            {
+                var delPizzaId = int.Parse(cmbPizzas.SelectedValue.ToString());
+                var delPizza = context.Pizzas.Where(p => p.PizzaId == delPizzaId).FirstOrDefault();
+                context.Pizzas.Remove(delPizza);
+                context.SaveChanges();
+                GetData();
+            } else
+            {
+                MessageBox.Show("Wybierz pizzę którą chcesz usunąć");
+            }
+        }
+
+        private void cmbPizzas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(cmbPizzas.SelectedValue != null)
+            {
+                var delPizzaId = int.Parse(cmbPizzas.SelectedValue.ToString());
+                var delPizza = context.Pizzas.Where(p => p.PizzaId == delPizzaId).FirstOrDefault();
+                txtEditName.Text = delPizza.PizzaName;
+                txtEditPrice.Text = delPizza.PizzaPrice.ToString();
+            }
+        }
+
+        private void EditPizza(object sender, RoutedEventArgs e)
+        {
+            if (cmbPizzas.SelectedValue != null)
+            {
+                var delPizzaId = int.Parse(cmbPizzas.SelectedValue.ToString());
+                var delPizza = context.Pizzas.Where(p => p.PizzaId == delPizzaId).FirstOrDefault();
+                delPizza.PizzaName = txtEditName.Text;
+                delPizza.PizzaPrice = decimal.Parse(txtEditPrice.Text.ToString());
+                context.SaveChanges();
+                ShowPizzas();
+                ClearForms();
+                cmbPizzas.SelectedValue = null;
+            } else
+            {
+                MessageBox.Show("Wybierz pizzę którą chcesz edytować");
+            }
+        }
+        private void ClearForms()
+        {
+            txtEditPrice.Text = "";
+            txtEditName.Text = "";
+            tbPizzaName.Text = "Nazwa Pizzy";
+            tbPizzaPrice.Text = "Cena Pizzy";
+        }
+
     }
 }

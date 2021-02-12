@@ -13,21 +13,7 @@
         <ListBox x:Name="listPizzaIngredients" HorizontalAlignment="Left" Height="185" Margin="399,97,0,0" VerticalAlignment="Top" Width="123"/>
         <DataGrid  Name="dgvPizzas" SelectionChanged="dgvPizzas_SelectionChanged" SelectionUnit="FullRow"  AutoGenerateColumns="False" HorizontalAlignment="Left" Height="185" Margin="37,97,0,0" VerticalAlignment="Top" Width="338">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="" Width="30" IsReadOnly="True" DisplayIndex="0">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Image Source="/Images/edit-button.png" ToolTip="Edit" Width="20" Height="20"  x:Name="Revise"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-                <DataGridTemplateColumn Header="" Width="30" IsReadOnly="True" DisplayIndex="1">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Image Source="/Images/delete-button.png" ToolTip="Delete" Width="20" Height="20"  x:Name="Delete"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                
                 <DataGridTextColumn x:Name="PizzaId" Header="Id" MinWidth="30" CanUserResize="False" Visibility="Hidden" Binding="{Binding Path=PizzaId}"/>
                 <DataGridTextColumn x:Name="PizzaName" Header="Pizza" Width="*" CanUserResize="False" CanUserReorder="False" Binding="{Binding Path=PizzaName}" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="PizzaPrice" Header="Cena" Width="50" MinWidth="20" CanUserResize="False" CanUserReorder="False" Binding="{Binding Path=PizzaPrice}" IsReadOnly="True"/>
@@ -41,6 +27,12 @@
         <Label Content="Edycja Pizz" FontSize="30" HorizontalAlignment="Left" Margin="315,24,0,0" VerticalAlignment="Top"/>
         <Button Content="Usuń składnik" HorizontalAlignment="Left" Margin="410,299,0,0" VerticalAlignment="Top" Width="104" Height="25" Click="DeleteIngredientFromPizza"/>
         <Button Content="Dodaj składnik" HorizontalAlignment="Left" Margin="635,379,0,0" VerticalAlignment="Top" Width="120" Height="25" Click="AddIngredientToPizza"/>
+        
+        <ComboBox Name="cmbPizzas" SelectionChanged="cmbPizzas_SelectionChanged" HorizontalAlignment="Left" Margin="51,379,0,0" VerticalAlignment="Top" Width="120" Height="22"/>
+        <Button Content="Usuń" HorizontalAlignment="Left" Margin="189,379,0,0" VerticalAlignment="Top" Width="78" Height="22" Click="DeletePizza"/>
+        <TextBox x:Name="txtEditName" HorizontalAlignment="Left" Height="23" Margin="51,423,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtEditPrice" HorizontalAlignment="Left" Height="23" Margin="189,423,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="78"/>
+        <Button Content="Edytuj" HorizontalAlignment="Left" Margin="286,423,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="EditPizza"/>
 
     </Grid>
 </Page>
