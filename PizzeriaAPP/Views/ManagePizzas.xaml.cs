@@ -21,18 +21,20 @@ namespace PizzeriaAPP.Views
     /// </summary>
     public partial class ManagePizzas : Page
     {
+        PizzeriaAPPEntities context;
         public ManagePizzas()
         {
             InitializeComponent();
+            context = new PizzeriaAPPEntities();
             GetData();
         }
 
         private void GetData()
         {
-            var context = new PizzeriaAPPEntities();
+            //var context = new PizzeriaAPPEntities();
 
             var pizzas = context.Pizzas.ToList();
-            var allIngredients = context.Ingredients.Select(i => i.IngredientName).ToList();
+            var allIngredients = context.Ingredients.ToList();
 
             if (pizzas != null && pizzas.Count() > 0)
             {
@@ -46,6 +48,8 @@ namespace PizzeriaAPP.Views
 
             if (allIngredients != null && allIngredients.Count() > 0)
             {
+                listAllIngredients.SelectedValuePath = "IngredientId";
+                listAllIngredients.DisplayMemberPath = "IngredientName";
                 listAllIngredients.ItemsSource = allIngredients;
             }
             else
@@ -58,7 +62,7 @@ namespace PizzeriaAPP.Views
 
         private void ShowPizzas()
         {
-            var context = new PizzeriaAPPEntities();
+            //var context = new PizzeriaAPPEntities();
             var pizzas = context.Pizzas.ToList();
             if (pizzas != null && pizzas.Count() > 0)
             {
@@ -73,7 +77,7 @@ namespace PizzeriaAPP.Views
 
         private void ShowPizzaIngredients()
         {
-            var context = new PizzeriaAPPEntities();
+           // var context = new PizzeriaAPPEntities();
 
 
             if (dgvPizzas.SelectedValue != null)
@@ -84,31 +88,27 @@ namespace PizzeriaAPP.Views
                                         join ip in context.IngredientsPizzas
                                         on i.IngredientId equals ip.IngredientId
                                         where ip.PizzaId == pizzaId
-                                        select i.IngredientName).ToList();
+                                        select new { 
+                                            i.IngredientName, 
+                                            ip.Id
+                                        }).ToList();
 
+                listPizzaIngredients.DisplayMemberPath = "IngredientName";
+                listPizzaIngredients.SelectedValuePath = "Id";
                 listPizzaIngredients.ItemsSource = pizzaIngredients;
+                
             }
 
         }
 
         private void dgvPizzas_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //Create object for DataGrid
-            DataGrid grd = (DataGrid)sender;
-            //Create object for DataRowView
-            DataRowView row_selected = grd.SelectedItem as DataRowView;
-
-            if (dgvPizzas.SelectedCells[0].Column.DisplayIndex == 0)
-            {
-                //MessageBox.Show("ss");
-               tbPizzaName.Text = row_selected["PizzaName"].ToString();
-            }
+        { 
             ShowPizzaIngredients();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var context = new PizzeriaAPPEntities();
+            //var context = new PizzeriaAPPEntities();
 
             if (tbPizzaName.Text == "" || tbPizzaName.Text == "Nazwa Pizzy")
             {
@@ -130,9 +130,37 @@ namespace PizzeriaAPP.Views
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
 
+        private void AddIngredientToPizza(object sender, RoutedEventArgs e)
+        {
+            if(listAllIngredients.SelectedValue != null && dgvPizzas.SelectedValue != null && int.Parse(listAllIngredients.SelectedValue.ToString()) > 0 && int.Parse(dgvPizzas.SelectedValue.ToString()) > 0)
+            {
+                context.IngredientsPizzas.Add(new IngredientsPizza
+                {
+                    IngredientId = int.Parse(listAllIngredients.SelectedValue.ToString()),
+                    PizzaId = int.Parse(dgvPizzas.SelectedValue.ToString())
+                });
+                context.SaveChanges();
+                ShowPizzaIngredients();
+            }else
+            {
+                MessageBox.Show("Wybierz Pizzę oraz składnik który chcesz dodać");
+            }
+        }
+
+        private void DeleteIngredientFromPizza(object sender, RoutedEventArgs e)
+        {
+            if(listPizzaIngredients.SelectedValue != null && int.Parse(listPizzaIngredients.SelectedValue.ToString()) > 0)
+            {
+                var deleteId = int.Parse(listPizzaIngredients.SelectedValue.ToString());
+                var deletedIng = context.IngredientsPizzas.Where(ip => ip.Id == deleteId).FirstOrDefault();
+                context.IngredientsPizzas.Remove(deletedIng);
+                context.SaveChanges();
+                ShowPizzaIngredients();
+            }else
+            {
+                MessageBox.Show("Wybierz składnik który chcesz usunąć z pizzy");
+            }
         }
     }
 }

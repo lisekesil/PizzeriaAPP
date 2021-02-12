@@ -20,22 +20,23 @@ namespace PizzeriaAPP.Views
     /// </summary>
     public partial class ManageIngredients : Page
     {
+        PizzeriaAPPEntities context;
         public ManageIngredients()
         {
             InitializeComponent();
-            GetData();
+            context = new PizzeriaAPPEntities();
+            ShowIngredients();
 
         }
 
-        private void GetData()
+        private void ShowIngredients()
         {
-
-            var context = new PizzeriaAPPEntities();
-
-            var allIngredients = context.Ingredients.Select(i => i.IngredientName).ToList();
+            var allIngredients = context.Ingredients.ToList();
 
             if (allIngredients != null && allIngredients.Count() > 0)
             {
+                listAllIngredients.DisplayMemberPath = "IngredientName";
+                listAllIngredients.SelectedValuePath = "IngredientId";
                 listAllIngredients.ItemsSource = allIngredients;
             }
             else
@@ -46,17 +47,67 @@ namespace PizzeriaAPP.Views
 
         private void AddIngredient(object sender, RoutedEventArgs e)
         {
-            var context = new PizzeriaAPPEntities();
-
             if (txtAddIng.Text != "" || txtAddIng.Text.Length < 50)
             {
                 context.Ingredients.Add(new Ingredient { IngredientName = txtAddIng.Text });
                 context.SaveChanges();
-                GetData();
+                ShowIngredients();
+                ClearTxt();
             }else
             {
                 MessageBox.Show("Spróbuj jeszcze raz! Nazwa skladnika nie może być dłuższa niż 50");
             }
+        }
+
+        private void listAllIngredients_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(listAllIngredients.SelectedValue != null)
+            {
+                var ingId = int.Parse(listAllIngredients.SelectedValue.ToString());
+                var ing = context.Ingredients.Where(i => i.IngredientId == ingId).FirstOrDefault();
+                txtEditing.Text = ing.IngredientName;
+
+            }
+        }
+
+        private void DeleteIngredient(object sender, RoutedEventArgs e)
+        {
+            if (listAllIngredients.SelectedValue != null)
+            {
+                var deletedId = int.Parse(listAllIngredients.SelectedValue.ToString());
+                var deletedIng = context.Ingredients.Where(i => i.IngredientId == deletedId).FirstOrDefault();
+                context.Ingredients.Remove(deletedIng);
+                context.SaveChanges();
+                ShowIngredients();
+                listAllIngredients.SelectedValue = 0;
+
+            } else
+            {
+                MessageBox.Show("Wybierz składnik który chcesz usunąć");
+            }
+        }
+
+        private void EditIngredient(object sender, RoutedEventArgs e)
+        {
+            if(listAllIngredients.SelectedValue != null)
+            {
+
+            var ingId = int.Parse(listAllIngredients.SelectedValue.ToString());
+            var ing = context.Ingredients.Where(i => i.IngredientId == ingId).FirstOrDefault();
+            ing.IngredientName = txtEditing.Text;
+            context.SaveChanges();
+            ShowIngredients();
+            ClearTxt();
+            } else
+            {
+                MessageBox.Show("Wybierz składnik który chcesz edytować");
+            }
+        }
+
+        private void ClearTxt()
+        {
+            txtEditing.Text = "";
+            txtAddIng.Text = "";
         }
     }
 }

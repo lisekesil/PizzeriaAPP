@@ -39,8 +39,8 @@
         <TextBox x:Name="tbPizzaPrice" HorizontalAlignment="Left" Height="25" Margin="189,299,0,0" TextWrapping="Wrap" Text="Cena Pizzy" VerticalAlignment="Top" Width="78"/>
         <Button Content="Dodaj" HorizontalAlignment="Left" Margin="286,299,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="Button_Click"/>
         <Label Content="Edycja Pizz" FontSize="30" HorizontalAlignment="Left" Margin="315,24,0,0" VerticalAlignment="Top"/>
-        <Button Content="Usuń składnik" HorizontalAlignment="Left" Margin="410,299,0,0" VerticalAlignment="Top" Width="104" Height="25" Click="Button_Click_1"/>
-        <Button Content="Dodaj składnik" HorizontalAlignment="Left" Margin="635,379,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
+        <Button Content="Usuń składnik" HorizontalAlignment="Left" Margin="410,299,0,0" VerticalAlignment="Top" Width="104" Height="25" Click="DeleteIngredientFromPizza"/>
+        <Button Content="Dodaj składnik" HorizontalAlignment="Left" Margin="635,379,0,0" VerticalAlignment="Top" Width="120" Height="25" Click="AddIngredientToPizza"/>
 
     </Grid>
 </Page>
