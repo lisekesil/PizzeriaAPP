@@ -20,15 +20,16 @@ namespace PizzeriaAPP.Views
     /// </summary>
     public partial class ListOfPizzas : Page
     {
+        PizzeriaAPPEntities context;
         public ListOfPizzas()
         {
             InitializeComponent();
-            GetData();
+            context = new PizzeriaAPPEntities();
+            GetPizzas();
         }
 
-        private void GetData()
+        private void GetPizzas()
         {
-            var context = new PizzeriaAPPEntities();
 
             var pizzas = context.Pizzas.ToList();
 
@@ -41,6 +42,35 @@ namespace PizzeriaAPP.Views
             {
                 dgvPizzas.ItemsSource = null;
             }
+        }
+
+        private void ShowPizzaIngredients()
+        {
+            if (dgvPizzas.SelectedValue != null)
+            {
+                var pizzaId = Int32.Parse(dgvPizzas.SelectedValue.ToString());
+
+                var pizzaIngredients = (from i in context.Ingredients
+                                        join ip in context.IngredientsPizzas
+                                        on i.IngredientId equals ip.IngredientId
+                                        where ip.PizzaId == pizzaId
+                                        select new
+                                        {
+                                            i.IngredientName,
+                                            ip.Id
+                                        }).ToList();
+
+                listIngredients.DisplayMemberPath = "IngredientName";
+                listIngredients.SelectedValuePath = "Id";
+                listIngredients.ItemsSource = pizzaIngredients;
+
+            }
+
+        }
+
+        private void dgvPizzas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ShowPizzaIngredients();
         }
     }
 }

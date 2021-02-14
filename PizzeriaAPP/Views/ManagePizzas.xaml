@@ -6,33 +6,36 @@
       xmlns:local="clr-namespace:PizzeriaAPP.Views"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      Title="ManagePizzas" Width="800" Height="600">
+      Title="ManagePizzas" Width="800" Height="600" >
 
     <Grid>
         <Rectangle Width="800" Height="600" Fill="Bisque"/>
-        <ListBox x:Name="listPizzaIngredients" HorizontalAlignment="Left" Height="185" Margin="399,97,0,0" VerticalAlignment="Top" Width="123"/>
-        <DataGrid  Name="dgvPizzas" SelectionChanged="dgvPizzas_SelectionChanged" SelectionUnit="FullRow"  AutoGenerateColumns="False" HorizontalAlignment="Left" Height="185" Margin="37,97,0,0" VerticalAlignment="Top" Width="338">
+        <ListBox x:Name="listPizzaIngredients" HorizontalAlignment="Left" Height="170" Margin="392,130,0,0" VerticalAlignment="Top" Width="115"/>
+        <DataGrid  Name="dgvPizzas" SelectionChanged="dgvPizzas_SelectionChanged" SelectionUnit="FullRow"  AutoGenerateColumns="False" HorizontalAlignment="Left" Height="170" Margin="54,130,0,0" VerticalAlignment="Top" Width="316">
             <DataGrid.Columns>
-                
-                <DataGridTextColumn x:Name="PizzaId" Header="Id" MinWidth="30" CanUserResize="False" Visibility="Hidden" Binding="{Binding Path=PizzaId}"/>
+
+                <DataGridTextColumn x:Name="PizzaId" Header="Id" MinWidth="30" CanUserResize="False" Visibility="Visible" Binding="{Binding Path=PizzaId}"/>
                 <DataGridTextColumn x:Name="PizzaName" Header="Pizza" Width="*" CanUserResize="False" CanUserReorder="False" Binding="{Binding Path=PizzaName}" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="PizzaPrice" Header="Cena" Width="50" MinWidth="20" CanUserResize="False" CanUserReorder="False" Binding="{Binding Path=PizzaPrice}" IsReadOnly="True"/>
 
             </DataGrid.Columns>
         </DataGrid>
-        <ListBox x:Name="listAllIngredients" HorizontalAlignment="Left" Height="266" Margin="622,97,0,0" VerticalAlignment="Top" Width="143"/>
-        <TextBox x:Name="tbPizzaName" HorizontalAlignment="Left" Height="25" Margin="51,299,0,0" TextWrapping="Wrap" Text="Nazwa Pizzy" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbPizzaPrice" HorizontalAlignment="Left" Height="25" Margin="189,299,0,0" TextWrapping="Wrap" Text="Cena Pizzy" VerticalAlignment="Top" Width="78"/>
-        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="286,299,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="Button_Click"/>
-        <Label Content="Edycja Pizz" FontSize="30" HorizontalAlignment="Left" Margin="315,24,0,0" VerticalAlignment="Top"/>
-        <Button Content="Usuń składnik" HorizontalAlignment="Left" Margin="410,299,0,0" VerticalAlignment="Top" Width="104" Height="25" Click="DeleteIngredientFromPizza"/>
-        <Button Content="Dodaj składnik" HorizontalAlignment="Left" Margin="635,379,0,0" VerticalAlignment="Top" Width="120" Height="25" Click="AddIngredientToPizza"/>
-        
-        <ComboBox Name="cmbPizzas" SelectionChanged="cmbPizzas_SelectionChanged" HorizontalAlignment="Left" Margin="51,379,0,0" VerticalAlignment="Top" Width="120" Height="22"/>
-        <Button Content="Usuń" HorizontalAlignment="Left" Margin="189,379,0,0" VerticalAlignment="Top" Width="78" Height="22" Click="DeletePizza"/>
-        <TextBox x:Name="txtEditName" HorizontalAlignment="Left" Height="23" Margin="51,423,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txtEditPrice" HorizontalAlignment="Left" Height="23" Margin="189,423,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="78"/>
-        <Button Content="Edytuj" HorizontalAlignment="Left" Margin="286,423,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="EditPizza"/>
+        <ListBox x:Name="listAllIngredients" HorizontalAlignment="Left" Height="248" Margin="600,130,0,0" VerticalAlignment="Top" Width="134"/>
+        <TextBox x:Name="tbPizzaName" HorizontalAlignment="Left" Height="24" Margin="69,324,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="112"/>
+        <TextBox x:Name="tbPizzaPrice" HorizontalAlignment="Left" Height="24" Margin="198,324,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="73"/>
+        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="288,324,0,0" VerticalAlignment="Top" Width="70" Height="24" Click="AddPizza"/>
+        <Label Content="Edycja Pizz" FontSize="50" FontWeight="Black" HorizontalAlignment="Left" Margin="268,30,0,0" VerticalAlignment="Top"/>
+        <Button Content="Usuń składnik" HorizontalAlignment="Left" Margin="401,324,0,0" VerticalAlignment="Top" Width="97" Height="24" Click="DeleteIngredientFromPizza"/>
+        <Button Content="Dodaj składnik" HorizontalAlignment="Left" Margin="613,404,0,0" VerticalAlignment="Top" Width="112" Height="23" Click="AddIngredientToPizza"/>
+
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="93" Margin="54,389,0,0" VerticalAlignment="Top" Width="316"/>
+        <ComboBox  Name="cmbPizzas" SelectionChanged="cmbPizzas_SelectionChanged" HorizontalAlignment="Left" Margin="96,406,0,0" VerticalAlignment="Top" Width="146" Height="21"/>
+        <Button Content="Usuń" HorizontalAlignment="Left" Margin="288,406,0,0" VerticalAlignment="Top" Width="70" Height="21" Click="DeletePizza"/>
+        <TextBox x:Name="txtEditName" HorizontalAlignment="Left" Height="21" Margin="69,447,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="112"/>
+        <TextBox x:Name="txtEditPrice" HorizontalAlignment="Left" Height="21" Margin="198,447,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="73"/>
+        <Button Content="Edytuj" HorizontalAlignment="Left" Margin="288,447,0,0" VerticalAlignment="Top" Width="70" Height="21" Click="EditPizza"/>
+        <Label Content="Nazwa Pizzy" HorizontalAlignment="Left" Margin="69,305,0,0" VerticalAlignment="Top" Height="24" Width="76"/>
+        <Label Content="Cena" HorizontalAlignment="Left" Margin="198,305,0,0" VerticalAlignment="Top" Height="24" Width="44"/>
 
     </Grid>
 </Page>

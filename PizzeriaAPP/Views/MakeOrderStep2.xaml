@@ -25,8 +25,8 @@
         <Label  Content="Koszyk" HorizontalAlignment="Left" Margin="307,137,0,0" VerticalAlignment="Top"/>
         <ListBox Name="lbCart" HorizontalAlignment="Left" Height="158" Margin="279,163,0,0" VerticalAlignment="Top" Width="100"/>
         <Button Content="Dodaj do koszyka" HorizontalAlignment="Left" Margin="421,334,0,0" VerticalAlignment="Top" Width="322" Height="32" Click="AddToCart"/>
-        <TextBlock FontSize="30" FontWeight="Bold" HorizontalAlignment="Left" Margin="148,427,0,0" TextWrapping="Wrap" Text="KWOTA:" VerticalAlignment="Top"/>
-        <Label Name="lblAmount" FontSize="30" FontWeight="Black" Content="" HorizontalAlignment="Left" Margin="264,422,0,0" VerticalAlignment="Top"/>
+        <TextBlock FontSize="30" FontWeight="Bold" HorizontalAlignment="Left" Margin="111,427,0,0" TextWrapping="Wrap" Text="KWOTA:" VerticalAlignment="Top"/>
+        <Label Name="lblAmount" FontSize="30" FontWeight="Black" Content="0.00 PLN" HorizontalAlignment="Left" Margin="227,422,0,0" VerticalAlignment="Top"/>
         <Label Name="lblFirstName" FontSize="14" FontWeight="Bold" Content="" HorizontalAlignment="Left" Margin="100,170,0,0" VerticalAlignment="Top"/>
         <Label Name="lblLastName" FontSize="14" FontWeight="Bold" Content="" HorizontalAlignment="Left" Margin="100,200,0,0" VerticalAlignment="Top"/>
         <Label Name="lblCity" FontSize="14" FontWeight="Bold" Content="" HorizontalAlignment="Left" Margin="100,230,0,0" VerticalAlignment="Top"/>

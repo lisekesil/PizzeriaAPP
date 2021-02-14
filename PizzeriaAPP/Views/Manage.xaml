@@ -10,9 +10,9 @@
 
     <Grid>
         <Rectangle Width="800" Height="600" Fill="Bisque"/>
-        <Label Content="Zarządzanie" FontSize="30" HorizontalAlignment="Left" Margin="315,24,0,0" VerticalAlignment="Top"/>
+        <Label Content="Zarządzanie" FontSize="50" FontWeight="Black" HorizontalAlignment="Left" Margin="245,31,0,0" VerticalAlignment="Top"/>
         <Image Source="/Images/pizza.png" HorizontalAlignment="Left" Height="307" Margin="465,159,0,0" VerticalAlignment="Top" Width="285"/>
-        <Button Content="Zarządzaj Pizzami" HorizontalAlignment="Left" Margin="109,200,0,0" VerticalAlignment="Top" Width="207" Height="33" Click="GoManagePizzas"/>
-        <Button Content="Zarządzaj Składnikami" HorizontalAlignment="Left" Margin="109,250,0,0" VerticalAlignment="Top" Width="207" Height="33" Click="GoManageIngredients"/>
+        <Button Content="Zarządzaj Pizzami" HorizontalAlignment="Left" Margin="107,248,0,0" VerticalAlignment="Top" Width="207" Height="33" Click="GoManagePizzas"/>
+        <Button Content="Zarządzaj Składnikami" HorizontalAlignment="Left" Margin="107,298,0,0" VerticalAlignment="Top" Width="207" Height="33" Click="GoManageIngredients"/>
     </Grid>
 </Page>

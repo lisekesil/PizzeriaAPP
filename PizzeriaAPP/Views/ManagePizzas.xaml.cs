@@ -26,30 +26,16 @@ namespace PizzeriaAPP.Views
         {
             InitializeComponent();
             context = new PizzeriaAPPEntities();
-            GetData();
+            ShowPizzas();
+            ShowIngredients();
+            //GetData();
+        
         }
 
-        private void GetData()
+        private void ShowIngredients()
         {
-            //var context = new PizzeriaAPPEntities();
 
-            var pizzas = context.Pizzas.ToList();
             var allIngredients = context.Ingredients.ToList();
-
-            if (pizzas != null && pizzas.Count() > 0)
-            {
-                dgvPizzas.ItemsSource = pizzas;
-                dgvPizzas.SelectedValuePath = "PizzaId";
-
-                cmbPizzas.ItemsSource = pizzas;
-                cmbPizzas.DisplayMemberPath = "PizzaName";
-                cmbPizzas.SelectedValuePath = "PizzaId";
-            }
-            else
-            {
-                dgvPizzas.ItemsSource = null;
-            }
-
             if (allIngredients != null && allIngredients.Count() > 0)
             {
                 listAllIngredients.SelectedValuePath = "IngredientId";
@@ -66,7 +52,6 @@ namespace PizzeriaAPP.Views
 
         private void ShowPizzas()
         {
-            //var context = new PizzeriaAPPEntities();
             var pizzas = context.Pizzas.ToList();
             if (pizzas != null && pizzas.Count() > 0)
             {
@@ -85,9 +70,6 @@ namespace PizzeriaAPP.Views
 
         private void ShowPizzaIngredients()
         {
-           // var context = new PizzeriaAPPEntities();
-
-
             if (dgvPizzas.SelectedValue != null)
             {
                 var pizzaId = Int32.Parse(dgvPizzas.SelectedValue.ToString());
@@ -114,15 +96,14 @@ namespace PizzeriaAPP.Views
             ShowPizzaIngredients();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AddPizza(object sender, RoutedEventArgs e)
         {
-            //var context = new PizzeriaAPPEntities();
 
-            if (tbPizzaName.Text == "" || tbPizzaName.Text == "Nazwa Pizzy")
+            if (tbPizzaName.Text == "")
             {
                 MessageBox.Show("Proszę wpisać nazwę pizzy");
             }
-            else if (Convert.ToDecimal(tbPizzaPrice.Text) <= 0 || tbPizzaPrice.Text == "Cena Pizzy")
+            else if (Convert.ToDecimal(tbPizzaPrice.Text) <= 0)
             {
                 MessageBox.Show("Proszę wpisać poprawną kwotę");
             }
@@ -135,6 +116,7 @@ namespace PizzeriaAPP.Views
                 context.Pizzas.Add(newPizza);
                 context.SaveChanges();
                 ShowPizzas();
+                ClearForms();
             }
         }
 
@@ -179,7 +161,8 @@ namespace PizzeriaAPP.Views
                 var delPizza = context.Pizzas.Where(p => p.PizzaId == delPizzaId).FirstOrDefault();
                 context.Pizzas.Remove(delPizza);
                 context.SaveChanges();
-                GetData();
+                // GetData();
+                ShowPizzas();
             } else
             {
                 MessageBox.Show("Wybierz pizzę którą chcesz usunąć");
@@ -194,6 +177,10 @@ namespace PizzeriaAPP.Views
                 var delPizza = context.Pizzas.Where(p => p.PizzaId == delPizzaId).FirstOrDefault();
                 txtEditName.Text = delPizza.PizzaName;
                 txtEditPrice.Text = delPizza.PizzaPrice.ToString();
+            }else
+            {
+                txtEditName.Text = "";
+                txtEditPrice.Text = "";
             }
         }
 
@@ -218,8 +205,8 @@ namespace PizzeriaAPP.Views
         {
             txtEditPrice.Text = "";
             txtEditName.Text = "";
-            tbPizzaName.Text = "Nazwa Pizzy";
-            tbPizzaPrice.Text = "Cena Pizzy";
+            tbPizzaName.Text = "";
+            tbPizzaPrice.Text = "";
         }
 
     }

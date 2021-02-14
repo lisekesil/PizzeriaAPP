@@ -10,7 +10,8 @@
 
     <Grid>
         <Rectangle Width="800" Height="600" Fill="Bisque"/>
-        <DataGrid x:Name="dgvOrders" SelectionChanged="dgvOrders_SelectionChanged" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="250" Margin="50,100,0,0" VerticalAlignment="Top" Width="534">
+        <Label Content="Zamówienia" FontSize="50" FontWeight="Black" HorizontalAlignment="Left" Margin="252,38,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="dgvOrders" SelectionChanged="dgvOrders_SelectionChanged" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="250" Margin="51,165,0,0" VerticalAlignment="Top" Width="534">
             <DataGrid.Columns>
 
                 <DataGridTextColumn x:Name="OrderId" Header="Id" MinWidth="30" CanUserResize="False" Visibility="Hidden" Binding="{Binding Path=PizzaId}"/>
@@ -23,7 +24,8 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <ListBox x:Name="listOrderedPizzas"  HorizontalAlignment="Left" Height="250" Margin="630,100,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Usuń" HorizontalAlignment="Left" Margin="496,371,0,0" VerticalAlignment="Top" Width="88" Height="31" Click="DeleteOrder"/>
+        <ListBox x:Name="listOrderedPizzas"  HorizontalAlignment="Left" Height="217" Margin="631,198,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Usuń" HorizontalAlignment="Left" Margin="497,436,0,0" VerticalAlignment="Top" Width="88" Height="31" Click="DeleteOrder"/>
+        <Label Content="Zamówione pizze" HorizontalAlignment="Left" Margin="631,172,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>

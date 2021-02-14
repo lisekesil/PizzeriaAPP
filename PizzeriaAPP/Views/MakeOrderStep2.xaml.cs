@@ -121,27 +121,35 @@ namespace PizzeriaAPP.Views
 
         private void MakeOrder(object sender, RoutedEventArgs e)
         {
-            var newOrder = new Order
+            if(pizzas.Count() > 0)
             {
-                FirstName = this.firstName,
-                LastName = this.lastName,
-                City = this.city,
-                Street = this.street,
-                PhoneNumber = this.phoneNumber,
-                Amount = this.amount
-            };
 
-            context.Orders.Add(newOrder);
+                var newOrder = new Order
+                {
+                    FirstName = this.firstName,
+                    LastName = this.lastName,
+                    City = this.city,
+                    Street = this.street,
+                    PhoneNumber = this.phoneNumber,
+                    Amount = this.amount
+                };
+
+                context.Orders.Add(newOrder);
             
-            foreach(var pizza in pizzas)
+                foreach(var pizza in pizzas)
+                {
+                    context.OrderedPizzas.Add(new OrderedPizza { OrderId = newOrder.OrderId, PizzaId = pizza.PizzaId });
+                }
+
+                context.SaveChanges();
+                MessageBox.Show("GRATULACJE! Udało ci się dodać zamówienie! Sprawdź zakładkę Zamówienia");
+
+                var mainMenu = new MainMenu();
+                NavigationService.Navigate(mainMenu);
+            } else
             {
-                context.OrderedPizzas.Add(new OrderedPizza { OrderId = newOrder.OrderId, PizzaId = pizza.PizzaId });
+                MessageBox.Show("Proszę wybrać jakąś pizzę!");
             }
-
-            context.SaveChanges();
-
-            var mainMenu = new MainMenu();
-            NavigationService.Navigate(mainMenu);
         }
     }
 }

@@ -10,16 +10,16 @@
 
     <Grid>
         <Rectangle Width="800" Height="600" Fill="Bisque"/>
-        <Label Content="Edytuj składniki" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="292,34,274,0" VerticalAlignment="Top"/>
+        <Label Content="Edycja składników" FontSize="50" FontWeight="Black" HorizontalAlignment="Center" Margin="170,34,165,0" VerticalAlignment="Top" Width="465"/>
         <Label Content="Lista składników" HorizontalAlignment="Left" Margin="93,131,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="listAllIngredients" SelectionChanged="listAllIngredients_SelectionChanged" HorizontalAlignment="Left" Height="312" Margin="68,162,0,0" VerticalAlignment="Top" Width="141"/>
+        <ListBox x:Name="listAllIngredients" SelectionChanged="listAllIngredients_SelectionChanged" HorizontalAlignment="Left" Height="275" Margin="68,162,0,0" VerticalAlignment="Top" Width="141"/>
         <TextBox x:Name="txtAddIng" HorizontalAlignment="Left" Height="36" Margin="238,189,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="137"/>
         <Button Content="Dodaj" HorizontalAlignment="Left" Margin="239,230,0,0" VerticalAlignment="Top" Width="136" Height="32" Click="AddIngredient"/>
         <Label Content="Dodaj nowy składnik" HorizontalAlignment="Left" Margin="239,163,0,0" VerticalAlignment="Top"/>
 
         <TextBox x:Name="txtEditing" HorizontalAlignment="Left" Height="36" Margin="239,401,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="137"/>
         <Button Content="Edytuj" HorizontalAlignment="Left" Margin="240,442,0,0" VerticalAlignment="Top" Width="136" Height="32" Click="EditIngredient"/>
-        <Button Content="Usuń" HorizontalAlignment="Left" Margin="68,479,0,0" VerticalAlignment="Top" Width="141" Height="32" Click="DeleteIngredient"/>
+        <Button Content="Usuń" HorizontalAlignment="Left" Margin="68,442,0,0" VerticalAlignment="Top" Width="141" Height="32" Click="DeleteIngredient"/>
 
         <Image Source="/Images/pizza.png" HorizontalAlignment="Left" Height="307" Margin="465,159,0,0" VerticalAlignment="Top" Width="285"/>
         <Label Content="Wybierz składnik&#xD;&#xA;z listy aby edytować" HorizontalAlignment="Left" Margin="239,359,0,0" VerticalAlignment="Top"/>

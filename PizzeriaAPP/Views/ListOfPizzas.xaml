@@ -10,17 +10,20 @@
 
     <Grid>
         <Rectangle Width="800" Height="600" Fill="Bisque"/>
-        <Label Content="Menu" FontSize="40" FontWeight="Black" HorizontalAlignment="Left" Margin="165,61,0,0" VerticalAlignment="Top"/>
-        <Image Source="/Images/pizza.png" HorizontalAlignment="Left" Height="400" Margin="337,61,0,0" VerticalAlignment="Top" Width="437"/>
-        
-        <DataGrid Name="dgvPizzas"  AutoGenerateColumns="False" HorizontalAlignment="Left" Height="189" Margin="93,160,0,0" VerticalAlignment="Top" Width="353">
+        <Label Content="Menu" FontSize="50" FontWeight="Black" HorizontalAlignment="Left" Margin="137,45,0,0" VerticalAlignment="Top"/>
+
+        <Image Source="/Images/pizza.png" HorizontalAlignment="Left" Height="307" Margin="465,159,0,0" VerticalAlignment="Top" Width="285"/>
+
+        <DataGrid Name="dgvPizzas" SelectionChanged="dgvPizzas_SelectionChanged" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="309" Margin="81,164,0,0" VerticalAlignment="Top" Width="270">
             <DataGrid.Columns>
-                
+
                 <DataGridTextColumn x:Name="PizzaId" Header="Id" MinWidth="30" CanUserResize="False" Visibility="Hidden" Binding="{Binding Path=PizzaId}"/>
                 <DataGridTextColumn x:Name="PizzaName" Header="Pizza" Width="*" CanUserResize="False" CanUserReorder="False" Binding="{Binding Path=PizzaName}" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="PizzaPrice" Header="Cena" Width="50" MinWidth="20" CanUserResize="False" CanUserReorder="False" Binding="{Binding Path=PizzaPrice}" IsReadOnly="True"/>
             </DataGrid.Columns>
 
         </DataGrid>
+        <ListBox x:Name="listIngredients" HorizontalAlignment="Left" Height="183" Margin="379,290,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="Składniki" HorizontalAlignment="Left" Margin="379,264,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>
