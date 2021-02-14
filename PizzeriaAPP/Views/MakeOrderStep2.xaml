@@ -1,0 +1,40 @@
+﻿<Page x:Class="PizzeriaAPP.Views.MakeOrderStep2"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PizzeriaAPP.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+       Title="MakeOrderStep2" Height="600" Width="800">
+
+    <Grid>
+
+        <Rectangle Width="800" Height="600" Fill="Bisque"/>
+        <Label Content="Zamówienie - krok 2" FontSize="50" FontWeight="Black" HorizontalAlignment="Left" Margin="145,32,0,0" VerticalAlignment="Top"/>
+
+        <DataGrid  Name="dgvPizzas" SelectionChanged="dgvPizzas_SelectionChanged" SelectionUnit="FullRow"  AutoGenerateColumns="False" HorizontalAlignment="Left" Height="158" Margin="421,163,0,0" VerticalAlignment="Top" Width="322">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn x:Name="PizzaId" Header="Id" MinWidth="30" CanUserResize="False" Visibility="Visible" Binding="{Binding Path=PizzaId}"/>
+                <DataGridTextColumn x:Name="PizzaName" Header="Pizza" Width="*" CanUserResize="False" CanUserReorder="False" Binding="{Binding Path=PizzaName}" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="PizzaPrice" Header="Cena" Width="50" MinWidth="20" CanUserResize="False" CanUserReorder="False" Binding="{Binding Path=PizzaPrice}" IsReadOnly="True"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label  Content="Koszyk" HorizontalAlignment="Left" Margin="307,137,0,0" VerticalAlignment="Top"/>
+        <ListBox Name="lbCart" HorizontalAlignment="Left" Height="158" Margin="279,163,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Content="Dodaj do koszyka" HorizontalAlignment="Left" Margin="421,334,0,0" VerticalAlignment="Top" Width="322" Height="32" Click="AddToCart"/>
+        <TextBlock FontSize="30" FontWeight="Bold" HorizontalAlignment="Left" Margin="148,427,0,0" TextWrapping="Wrap" Text="KWOTA:" VerticalAlignment="Top"/>
+        <Label Name="lblAmount" FontSize="30" FontWeight="Black" Content="" HorizontalAlignment="Left" Margin="264,422,0,0" VerticalAlignment="Top"/>
+        <Label Name="lblFirstName" FontSize="14" FontWeight="Bold" Content="" HorizontalAlignment="Left" Margin="100,170,0,0" VerticalAlignment="Top"/>
+        <Label Name="lblLastName" FontSize="14" FontWeight="Bold" Content="" HorizontalAlignment="Left" Margin="100,200,0,0" VerticalAlignment="Top"/>
+        <Label Name="lblCity" FontSize="14" FontWeight="Bold" Content="" HorizontalAlignment="Left" Margin="100,230,0,0" VerticalAlignment="Top"/>
+        <Label Name="lblStreet" FontSize="14" FontWeight="Bold" Content="" HorizontalAlignment="Left" Margin="100,260,0,0" VerticalAlignment="Top"/>
+        <Label Name="lblPhoneNumber" FontSize="14" FontWeight="Bold" Content="" HorizontalAlignment="Left" Margin="100,290,0,0" VerticalAlignment="Top"/>
+        <Button Content="Zamów" FontSize="30" FontWeight="Bold" HorizontalAlignment="Left" Margin="467,406,0,0" VerticalAlignment="Top" Width="231" Height="82" Click="MakeOrder"/>
+        <Button Content="Usuń z koszyka" HorizontalAlignment="Left" Margin="279,334,0,0" VerticalAlignment="Top" Width="100" Height="32" Click="DeleteFromCart"/>
+
+
+    </Grid>
+</Page>

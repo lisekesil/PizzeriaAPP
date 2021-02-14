@@ -12,7 +12,8 @@
         <Rectangle Fill="Bisque" Width="800" Height="600"/>
         <Label Content="PIZZA APP" FontSize="60" HorizontalAlignment="Left" Margin="263,26,0,0" VerticalAlignment="Top"/>
         <Button Content="Dostępne Pizze" HorizontalAlignment="Left" Margin="109,200,0,0" VerticalAlignment="Top" Width="207" Height="33" Click="GoListOfPizza"/>
-        <Button Content="Zamówienia" HorizontalAlignment="Left" Margin="109,250,0,0" VerticalAlignment="Top" Width="207" Height="33"/>
+        <Button Content="Zamówienia" HorizontalAlignment="Left" Margin="109,250,0,0" VerticalAlignment="Top" Width="100" Height="33" Click="GoOrders"/>
+        <Button Content="Zamów" HorizontalAlignment="Left" Margin="216,250,0,0" VerticalAlignment="Top" Width="100" Height="33" Click="GoMakeOrderStep1"/>
         <Button Content="Zarządzaj" HorizontalAlignment="Left" Margin="109,300,0,0" VerticalAlignment="Top" Width="207" Height="33" Click="GoManage"/>
         <Image Source="/Images/pizza.png" HorizontalAlignment="Left" Height="307" Margin="465,159,0,0" VerticalAlignment="Top" Width="285"/>
 

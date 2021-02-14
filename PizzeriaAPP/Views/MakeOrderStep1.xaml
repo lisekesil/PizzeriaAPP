@@ -1,0 +1,27 @@
+﻿<Page x:Class="PizzeriaAPP.Views.MakeOrderStep1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PizzeriaAPP.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+            Title="MakeOrder" Width="800" Height="600">
+
+    <Grid>
+        <Rectangle Width="800" Height="600" Fill="Bisque"/>
+        <Label Content="Zamówienie - krok 1" FontSize="50" FontWeight="Black" HorizontalAlignment="Left" Margin="145,32,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="txtFirstName" HorizontalAlignment="Left" Height="23" Margin="86,198,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
+        <TextBox x:Name="txtLastName" HorizontalAlignment="Left" Height="23" Margin="242,198,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="txtPhoneNumber" MaxLength="9" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="23" Margin="86,330,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="txtCity" HorizontalAlignment="Left" Height="23" Margin="86,264,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="txtStreet" HorizontalAlignment="Left" Height="23" Margin="242,264,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="155"/>
+        <Label Content="Imię" HorizontalAlignment="Left" Margin="85,172,0,0" VerticalAlignment="Top"/>
+        <Label Content="Miasto" HorizontalAlignment="Left" Margin="85,238,0,0" VerticalAlignment="Top"/>
+        <Label Content="Ulica i nr mieszkania" HorizontalAlignment="Left" Margin="242,238,0,0" VerticalAlignment="Top"/>
+        <Label Content="Nazwisko" HorizontalAlignment="Left" Margin="242,172,0,0" VerticalAlignment="Top"/>
+        <Label Content="Numer telefonu" HorizontalAlignment="Left" Margin="85,304,0,0" VerticalAlignment="Top"/>
+        <Button Content="Dalej" HorizontalAlignment="Left" Margin="170,396,0,0" VerticalAlignment="Top" Width="113" Height="40" Click="GoMakeOrderStep2"/>
+        <Image Source="/Images/pizza.png" HorizontalAlignment="Left" Height="307" Margin="465,159,0,0" VerticalAlignment="Top" Width="285"/>
+    </Grid>
+</Page>

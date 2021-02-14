@@ -5,13 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ad2a6cf3d32d43ba940af9442bf7a160" Name="Diagram1">
-        <EntityTypeShape EntityType="PizzeriaAPPModel.Ingredient" Width="1.5" PointX="0.625" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzeriaAPPModel.IngredientsPizza" Width="1.5" PointX="4.125" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzeriaAPPModel.Pizza" Width="1.5" PointX="1.875" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzeriaAPPModel.Ingredient" Width="1.5" PointX="1.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzeriaAPPModel.IngredientsPizza" Width="1.5" PointX="4.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzeriaAPPModel.Pizza" Width="1.5" PointX="1.625" PointY="3" IsExpanded="true" />
         <AssociationConnector Association="PizzeriaAPPModel.IngredientsFK" ManuallyRouted="false" />
         <AssociationConnector Association="PizzeriaAPPModel.PizzasFK" ManuallyRouted="false" />
         <EntityTypeShape EntityType="PizzeriaAPPModel.OrderedPizza" Width="1.5" PointX="6.625" PointY="3.25" />
-        <EntityTypeShape EntityType="PizzeriaAPPModel.Order" Width="1.5" PointX="10" PointY="1.25" />
+        <EntityTypeShape EntityType="PizzeriaAPPModel.Order" Width="1.5" PointX="9.25" PointY="1.125" />
         <AssociationConnector Association="PizzeriaAPPModel.OPizzasFK" />
         <AssociationConnector Association="PizzeriaAPPModel.OrdersFK" />
       </Diagram>

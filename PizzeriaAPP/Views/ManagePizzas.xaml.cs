@@ -204,7 +204,7 @@ namespace PizzeriaAPP.Views
                 var delPizzaId = int.Parse(cmbPizzas.SelectedValue.ToString());
                 var delPizza = context.Pizzas.Where(p => p.PizzaId == delPizzaId).FirstOrDefault();
                 delPizza.PizzaName = txtEditName.Text;
-                delPizza.PizzaPrice = decimal.Parse(txtEditPrice.Text.ToString());
+                delPizza.PizzaPrice = Convert.ToDecimal(txtEditPrice.Text);
                 context.SaveChanges();
                 ShowPizzas();
                 ClearForms();
