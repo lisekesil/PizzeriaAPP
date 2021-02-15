@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppInstaller
+	Uri="file:///D:/stoodent/semestr3/c#/PizzeriaAPP/PizzeriaAPP/installer/PizzeriaAPPInstaller.appinstaller"
+	Version="1.0.1.0" xmlns="http://schemas.microsoft.com/appx/appinstaller/2017/2">
+	<MainBundle
+		Name="3fe47068-568e-4a3f-a53f-a94aabbe3e49"
+		Version="1.0.1.0"
+		Publisher="CN=Wojciech Lisowicz"
+		Uri="file:///D:/stoodent/semestr3/c#/PizzeriaAPP/PizzeriaAPP/installer/PizzeriaAPPInstaller_1.0.1.0_Test/PizzeriaAPPInstaller_1.0.1.0_x86_x64.msixbundle" />
+	<UpdateSettings>
+		<OnLaunch
+			HoursBetweenUpdateChecks="0" />
+	</UpdateSettings>
+</AppInstaller>
