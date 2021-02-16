@@ -258,8 +258,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\pizza.png" />
-    <Resource Include="Images\delete-button.png" />
-    <Resource Include="Images\edit-button.png" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
